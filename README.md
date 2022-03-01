@@ -71,9 +71,16 @@ git pull
 git branch -M main  # 轉到要push的分支
 # git push 方式
 git add .
-git commit -m "message"
+git commit -m "message"  # 紀錄commit的方式
 git push -u origin main
 ```
 ### 3. 已經有用 git 版控的專案
+```python
+git remote add origin <your url>
+```
 ### 4. 如何紀錄(commit)
+```python
+git commit -m "message"  # 將跟改內容簡單記錄，方便其他人理解跟改內容
+```
 ### 5. 何為衝突(conflict)
+當上傳內容與原本內容不同時，會出現衝突
