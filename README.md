@@ -313,8 +313,40 @@ except:
 
 ![alt text](img/logging_format.png "Title")
 
+```python
+import logging
+
+FORMAT = '%(asctime)s %(levelname)s: %(message)s'  # 顯示出的格式，可以自己修改、asctime日期時間, 格式為 YYYY-MM-DD HH:mm:SS,ms
+DATE_FORMAT = '%Y%m%d %H:%M:%S'  # 更改日期格式
+logging.basicConfig(level=logging.DEBUG, format=LOGGING_FORMAT, datefmt=DATE_FORMAT)
+
+logging.debug('debug message')
+logging.info('info message')
+logging.warning('warning message')
+logging.error('error message')
+logging.critical('critical message')
+```
 
 ### 2. 如何輸出至 file
+
+1. logging.basicConfig()
+只要在logging.basicConfig() 內的 filename 參數設定要儲存的日誌檔名，就可以將 logging儲存。
+
+```python
+import logging
+
+FORMAT = '%(asctime)s %(levelname)s: %(message)s'  # 顯示出的格式，可以自己修改、asctime日期時間, 格式為 YYYY-MM-DD HH:mm:SS,ms
+DATE_FORMAT = '%Y%m%d %H:%M:%S'  # 更改日期格式
+logging.basicConfig(level=logging.DEBUG, filename='myLog.log', filemode='w', format=FORMAT)
+
+logging.debug('debug message')
+logging.info('info message')
+logging.warning('warning message')
+logging.error('error message')
+logging.critical('critical message')
+```
+
+2. fileConfig
 
 ## git
 ### 1. 如何建立 git repository
