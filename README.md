@@ -1,4 +1,12 @@
 # yihsuanko-basic-training
+## 基本訓練 - 使用VSCode
+### 1. 執行程式的方式(一般執行、偵錯模式)
+一般執行：開啟[file.py]後直接在terminal執行`python3 file.py`或是按control + f5 <br/>
+偵錯執行：開啟[file.py]後，點選要debug的程式碼前方空白，出現紅色小圓點，按上方Run -> start Debugging或是按f5 <br/>
+### 2. 設定執行參數(param)
+### 3. 設定執行環境變數 (與參數的不同？)
+### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
+### 5. 快速 reformat 程式碼
 
 ## 虛擬環境操作(virtualenv)
 ### 1. 如何判斷目前在正確的虛擬環境中
@@ -56,6 +64,8 @@ git 到想要的本地資料夾
 ```python
 cd [資料夾]
 git clone [url]  # 在repository有一個綠色code按鈕，點選可以找到url連結 
+git push <repository> <refspec>
+git pull <repository> <refspec>
 ```
 ### 3. 已經有用 git 版控的專案
 ### 4. 如何紀錄(commit)
