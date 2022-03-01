@@ -46,13 +46,59 @@ python -m pip install -r requirements.txt
 8. return 與 yield
 9. Type Hint
 ## 常見的資料結構(使用時機與操作方式)
-1. list
-2. set
-3. dictionary
+### 1. list
+List(串列)是一個資料型態，用來存放多個不同資料型態的資料(元素)。list 可以用來儲存一連串有順序性的元素。<br/>
+List的特性：<br/>
+    1. Iterable(可疊代的)：所以for迴圈可以應用在串列上。<br/>
+    2. Modifiable(可修改的)：串列中的元素可以透過Python提供的串列方法(Method)來進行修改。<br/>
+
+建立List的方法：<br/>
+    1. 以逗號分隔並且用 [] 符號將所有元素括起來。 `a = [1,2,3]`
+    2. 使用Python的list()，傳入Iterable(可疊代的)物件來建立串列。`a = list(range(10))`
+
+存取使用List的方法：<br/>
+    1. Python串列的位置索引值從0開始，假設 `a = [1,2,3]`，想要得到1，`print(a[0])`
+    2. 使用 `[:]` 符號並傳入索引值，包含前不包含後
+    3. 使用append()，將元素新增至串列的最後。 `a.append(4)  # print(a) -> [1,2,3,4]`
+    4. 使用insert()，將元素新增至串列的特定位置。`a.instert(1,4)  # print(a) -> [1,4,2,3]`
+    5. 使用index()，可以將要尋找的串列元素傳入，它會回傳該元素的位置索引值，如果要尋找的串列元素不在串列中，則會出現錯誤訊息。如果此元素在串列中有多個，index()只會找第一個出現的。`print(a.index(1)) -> 0`
+
+修改刪除List的方法：<br/>
+    1. 使用 [] 符號存取想修改的索引值，接著指派新的值 `a[1] = 1  # print(a) -> [1,1,3]`
+    2. 使用pop()，將串列的最後一個元素刪除。如果想刪除特定位置的元素，則傳入位置索引值。
+    3. 使用del 指令，指定要刪除的範圍位置索引值。
+    4. 使用remove()，傳入想刪除的元素。如果此元素在串列中有多個，remove()只會刪除第一個出現的。
+
+### 2. set
+Python set 物件是無序的集合(unordered collection)，**set集合不會包含重複的資料**。
+
+建立set的方法：<br/>
+    1. 以逗號分隔並且用 {} 符號將所有元素括起來。 `b = {1,2,3}`
+    2. 使用Python的set()，傳入Iterable(可疊代的)物件。 `b = set((1,2,3))`
+
+使用set的方法：<br/>
+    1. 使用remove()，傳入想刪除的元素。
+    2. 取 set 的交集要使用 & 符號就會取出兩集合中相同的元素。
+    3. 取 set 的聯集要使用 | 符號就會取出兩集合中所有的元素。
+    4. 取 set 的差集要使用 - 符號就會取出集合與另外一個集合的差集。
+
+### 3. dictionary
+dictionary (dict)是一個 key-value 對應的容器，能用key來查詢對應的value，所以一個dict裡的 key 是不會重複的，具有唯一性。,<br/>
+dict可以動態地新增與刪除資料，且資料儲存沒有順序性。
+
+建立dict的方法：<br/>
+    1. 使用{}建立空dict，或包含key-value `c = {}`, `c = {"apple":1, "banana":2, "car":3}`
+    2. 使用dict()建立空dict `c = dict()`
+
+使用dict的方法：<br/>
+    1. 新增資料：c["key"] = value `c["duck"] = 5`
+    2. 刪除資料：del c["key"] `del c["duck"]`
+    3. 測試key有沒有存在dict裡 `value1 = c.get('apple')`，如果 key 有存在的話就回傳該value，如果key沒有存在的話就回傳預設值，沒有給定預設值的話會回傳None。
+
 ## logging
-1. 層級與意義
-2. 如何輸出至 console
-3. 如何輸出至 file
+### 1. 層級與意義
+### 2. 如何輸出至 console
+### 3. 如何輸出至 file
 
 ## git
 ### 1. 如何建立 git repository
