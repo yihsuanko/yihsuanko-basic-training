@@ -67,8 +67,12 @@ git clone [url]  # 在repository有一個綠色code按鈕，點選可以找到ur
 ```
 避免多人合作時衝突，如果有修人改過檔案，需要先pull後push
 ```python
-git push <repository> <refspec>
-git pull <repository> <refspec>
+git pull 
+git branch -M main  # 轉到要push的分支
+# git push 方式
+git add .
+git commit -m "message"
+git push -u origin main
 ```
 ### 3. 已經有用 git 版控的專案
 ### 4. 如何紀錄(commit)
