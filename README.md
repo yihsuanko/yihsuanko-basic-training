@@ -12,12 +12,21 @@ cd [資料夾]
 python3.9 -m venv venv #Python 3.5 後使用，第二個venv是虛擬環境的名字可以自己取名
 ../venv/bin/activate #此行venv 是虛擬環境的名字
 ```
-
+輸入後前面有（venv）或是（自行取的虛擬環境名字）及成功切換到虛擬環境
 關閉虛擬環境
 ```python
 deactivate
 ```
 ### 2. requirements.txt
+使用`pip freeze` 複製一整個已經安裝的套件清單。一個常見的慣例是放這整個清單到一個叫`requirements.txt`的檔案：
+```python
+pip freeze > requirements.txt
+cat requirements.txt  # cat是輸出文件內容的指令
+```
+`requirements.txt` 用來提交到版本控制，並且作為釋出應用程式的一部分。使其他使用者可以透過 install -r 安裝對應的的套件：
+```python
+python -m pip install -r requirements.txt
+```
 ## python 操作
 1. Package 及 Module
 2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
@@ -44,7 +53,10 @@ deactivate
 git 到想要的本地資料夾
 ### 2. 全新的專案
 如果要建立全新的專案，進入github個人主頁面，新增repository<br/>
-
+```python
+cd [資料夾]
+git clone [url]  # 在repository有一個綠色code按鈕，點選可以找到url連結 
+```
 ### 3. 已經有用 git 版控的專案
 ### 4. 如何紀錄(commit)
 ### 5. 何為衝突(conflict)
