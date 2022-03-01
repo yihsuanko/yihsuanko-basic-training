@@ -361,8 +361,10 @@ git clone [url]  # 在repository有一個綠色code按鈕，點選可以找到ur
 ```
 避免多人合作時衝突，如果有修人改過檔案，需要先pull後push
 ```python
+# git pull 方式
 git pull 
-git branch -M main  # 轉到要push的分支
+# push前，轉到要push的分支
+git branch -M main  
 # git push 方式
 git add .
 git commit -m "message"  # 紀錄commit的方式
