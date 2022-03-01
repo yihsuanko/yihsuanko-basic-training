@@ -4,8 +4,32 @@
 一般執行：開啟[file.py]後直接在terminal執行`python3 file.py`或是按control + f5 <br/>
 偵錯執行：開啟[file.py]後，點選要debug的程式碼前方空白，出現紅色小圓點，按上方Run -> start Debugging或是按f5 <br/>
 ### 2. 設定執行參數(param)
+git -h
 
 ### 3. 設定執行環境變數 (與參數的不同？)
+執行`printenv` 或 `env`可以查詢目前已經設置的環境變量<br/>
+shell 啟動的設定檔通常存在以下幾種其中之一的路徑：
+```
+etc/environment
+etc/profile
+~/.profile
+~/.bashrc # 使用 bash 啟動 shell 的設定檔
+~/.zshrc # 使用 zsh 啟動 shell 的設定檔
+```
+
+如果要輸出一個變數，在 shell 的基本指令可以用 `export` : <br/>
+`export Pi=3.14159`<br/>
+如果只在終端機打 `export` 指令，下次啟動時就會發現這個系統變數不見了。<br/>
+如果要存在環境變數裡，使用 `vim` 編輯器編輯剛剛那些設定檔的其中之一，然後把剛剛的 export 指令加入後儲存就可以。<br/>
+儲存好後重新啟動一下設定檔，用 `source` 指令<br/>
+
+在python 中呼叫環境變數<br/>
+```python
+import os
+
+print(os.environ) # 跟 shell 中的 env 指令一樣，印出所有儲存的系統變數
+print(os.environ['Pi']) # 跟 shell 中 echo $Pi 一樣
+```
 
 ### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
 
@@ -28,6 +52,7 @@ python3.9 -m venv venv #Python 3.5 後使用，第二個venv是虛擬環境的�
 ```python
 deactivate
 ```
+
 ### 2. requirements.txt
 使用`pip freeze` 複製一整個已經安裝的套件清單。一個常見的慣例是放這整個清單到一個叫`requirements.txt`的檔案：
 ```python
@@ -78,8 +103,30 @@ print(about.__file__)  # 模組的檔名及路徑
 ```
 
 ### 2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
+安裝python-dotenv `pip install python-dotenv`
+新增 .env 檔
+並在 .env檔中設定變數
+範例
+```
+MODE=development
+DBHOST=localhost
+DBPORT=5432
+DBCONN_STR=${DBHOST}:${DBPORT}
+```
 
-```pip install python-dotenv```
+```python
+import os
+from dotenv import load_dotenv
+
+print('Before load_dotenv()', os.getenv('DBCONN_STR'))
+load_dotenv()  # load_dotenv() 載入 .env 檔
+print('After load_dotenv()', os.getenv('DBCONN_STR'))
+```
+執行結果
+```
+Before load_dotenv() None
+After load_dotenv() localhost:5432
+```
 
 ### 3. 如何執行一隻 python 程式
 1. 在終端機使用 Python shell 執行
@@ -379,4 +426,4 @@ git remote add origin <your url>
 git commit -m "message"  # 將跟改內容簡單記錄，方便其他人理解跟改內容
 ```
 ### 5. 何為衝突(conflict)
-當上傳內容與原本內容不同時，會出現衝突
+當上傳內容與原本內容不同或合併分支內容有不同時，會出現衝突
