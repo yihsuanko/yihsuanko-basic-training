@@ -64,6 +64,9 @@ git 到想要的本地資料夾
 ```python
 cd [資料夾]
 git clone [url]  # 在repository有一個綠色code按鈕，點選可以找到url連結 
+```
+避免多人合作時衝突，如果有修人改過檔案，需要先pull後push
+```python
 git push <repository> <refspec>
 git pull <repository> <refspec>
 ```
