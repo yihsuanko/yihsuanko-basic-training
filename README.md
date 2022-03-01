@@ -36,15 +36,114 @@ cat requirements.txt  # cat是輸出文件內容的指令
 python -m pip install -r requirements.txt
 ```
 ## python 操作
-1. Package 及 Module
-2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
-3. 如何執行一隻 python 程式
-4. 直接執行與 if __name__ == '__main__'差別在哪
-5. 如何引用套件與使用套件
-6. function(使用時機與操作方式)
-7. parameter(args, kwargs)
-8. return 與 yield
-9. Type Hint
+### 1. Package 及 Module
+
+#### Module
+模組(Module)就是一個檔案，包含了相關性較高的程式碼。隨著應用程式的開發規模越來越大，我們不可能把所有的程式碼都寫在同一份Python檔案中，一定會將關聯性較高的程式碼抽出來放在不同的檔案中來形成模組(Module)，主程式再透過引用的方式來使用。所以模組(Module)可以提高程式碼的重用性(Reusable)且易於維護。<br/>
+
+引用方式<br/>
+```
+from [module] import [需要的物件(function or class)]
+from [module] import*  # 使用 * 來引用模組中的所有物件
+import [需要的物件(function or class)]
+```
+
+在主程式 py檔中引用模組(Module)，並且執行後，會發現多了一個 pycache 資料夾。<br/>
+這個資料夾中，可以看到包含了引用模組的已編譯檔案，當下一次執行主程式 py檔時，Python編譯器看到已編譯的模組檔案，會直接載入該模組(Module)，而省略編譯的動作，藉此來加速載入模組(Module)的速度。當然Python編譯器在每一次執行時，會檢查來源模組及已編譯檔案的時間，當來源模組的時間較新，則代表該模組(Module)有經過修改，則Python編譯器會再編譯一次，更新已編譯檔案。
+
+#### Package
+就是一個資料夾，包含了一個或多個的模組(Module)，並且擁有__init__.py檔案，其中可以撰寫套件(Package)初始化的程式碼。當專案中的模組(Module)越來越多時，這時候就可以再將相似的模組(Module)組織為套件(Package)。<br/>
+
+引用方式<br/>
+```
+from [package] import [需要的物件(function or class)]
+from [package] import*  # 使用 * 來引用模組中的所有物件
+import [package].[需要的物件(function or class)]
+```
+
+#### dir()函式(dir function)
+用來顯示物件(Object)的屬性(Attribute)及方法(Method)<br/>
+
+常用的屬性(Attribute):<br/>
+```python
+# 從blog套件引用about模組
+from blog import about
+
+print(about.__name__)  # 模組名稱
+print(about.__package__)  # 套件名稱
+print(about.__file__)  # 模組的檔名及路徑
+```
+
+### 2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
+
+
+### 3. 如何執行一隻 python 程式
+1. 在終端機使用 Python shell 執行
+2. 利用一般文字編輯器撰寫程式檔，然後執行
+3. 利用 IDE (Integrated Development Environment，整合式開發環境) 編輯及執行程式
+
+### 4. 直接執行與 if __name__ == '__main__'差別在哪
+`if __name__ == '__main__'`的意思是：當.py檔案被直接執行時，`if __name__ == '__main__'`之下的程式碼塊將被執行；當.py檔案以模組形式被匯入時，`if __name__ == '__main__'`之下的程式碼塊不被執行。<br/>
+
+### 5. function(使用時機與操作方式)
+為了避免同樣的程式碼重複出現在很多個地方，使得可讀性很低且不易維護，透過定義function解決重複性問題。<br/>
+
+function 使用方法：
+```python
+def function_name(parameter):
+    # 欲執行程式碼
+    print(...)
+
+# 使用
+function_name()
+```
+
+**parameter(args, kwargs)**
+參數簡單來說就是接收外部所傳來的資料，進而執行相關的邏輯運算。參數個數取決於函式內部運算時所需的資料個數，所以在一般情況下，呼叫函式時一定要傳入相對的參數個數資料，否則就會出現例外錯誤。
+
+參數可分為：
+1. 關鍵字參數(Keyword Argument)：呼叫函式時，在傳入參數值的前面加上函式所定義的參數名稱。
+2. 預設值參數(Default Argument)：在函式定義的參數中，將可以選擇性傳入的參數設定一個預設值，當來源端有傳入該資料時，使用來源端的資料，沒有傳入時，則依照設定的預設值來進行運算。
+```python
+def function_name(name, birth, id=1):  # 使用此function時，一定要輸入name, birth，id如果沒輸入會自動為1
+    # 欲執行程式碼
+    print(name, birth, id)
+
+function_name(name="Tom", birth="3/1", id=5)  # Tom 3/1 5 
+function_name("Tom", "3/1", id=5)  # Tom 3/1 如果沒打參數名稱，一定要按順序給參數
+function_name(name="Jack", birth="12/1")  # Jack 12/1 1 
+```
+
+args、kwargs
+當我們要傳入大量的參數時，在函式上定義過多的參數名稱會讓程式碼的可讀性降低。
+- 如果想打包成字典(Tuple)資料型態，使用 * 符號來將傳入參數進行打包。
+- 如果想打包成字典(Dictionary)資料型態，則可以使用 ** 符號，且一定要使用關鍵字參數(Keyword Argument)。
+
+有無return值
+```python
+def function_name(parameter):
+    # 欲執行程式碼
+    print(...)
+
+# 使用
+function_name()  # print出print括號內東西
+```
+
+```python
+def function_name(parameter):
+    # 欲執行程式碼
+    return(...)
+
+# 使用
+function_name()  # 執行函數，不會print出return內東西
+print(function_name())  # print出return內東西
+```
+
+### 7. return 與 yield
+
+
+### 8. Type Hint
+
 ## 常見的資料結構(使用時機與操作方式)
 ### 1. list
 List(串列)是一個資料型態，用來存放多個不同資料型態的資料(元素)。list 可以用來儲存一連串有順序性的元素。<br/>
