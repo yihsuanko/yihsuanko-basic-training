@@ -1,7 +1,12 @@
-PI = 3.14
+def yield_test(n):
+    print("start n =", n)
+    for i in range(n):
+        yield i*i
+        print("i =", i)
 
-def main():
-    print("PI:", PI)
+    print("end")
 
-if __name__ == "__main__":
-    main()
+tests = yield_test(3)
+for test in tests:
+    print("test =", test)
+    print("--------")
