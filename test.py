@@ -1,12 +1,9 @@
-def yield_test(n):
-    print("start n =", n)
-    for i in range(n):
-        yield i*i
-        print("i =", i)
+import os
+from dotenv import load_dotenv
 
-    print("end")
 
-tests = yield_test(3)
-for test in tests:
-    print("test =", test)
-    print("--------")
+print('Before load_dotenv()', os.getenv('DBCONN_STR'))
+
+load_dotenv()
+
+print('After load_dotenv()', os.getenv('DBCONN_STR'))

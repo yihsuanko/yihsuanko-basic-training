@@ -4,8 +4,11 @@
 一般執行：開啟[file.py]後直接在terminal執行`python3 file.py`或是按control + f5 <br/>
 偵錯執行：開啟[file.py]後，點選要debug的程式碼前方空白，出現紅色小圓點，按上方Run -> start Debugging或是按f5 <br/>
 ### 2. 設定執行參數(param)
+
 ### 3. 設定執行環境變數 (與參數的不同？)
+
 ### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
+
 ### 5. 快速 reformat 程式碼
 
 ## 虛擬環境操作(virtualenv)
@@ -76,6 +79,7 @@ print(about.__file__)  # 模組的檔名及路徑
 
 ### 2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
 
+```pip install python-dotenv```
 
 ### 3. 如何執行一隻 python 程式
 1. 在終端機使用 Python shell 執行
@@ -200,6 +204,23 @@ end
 ```
 
 ### 7. Type Hint
+Type Hint的優點
+1. 可讀性更高、更好維護
+2. 更容易 Debug
+
+程式碼範例
+```python
+## 沒有 Type Hints
+def send_request(request_data, headers, user_id, as_json):
+    pass
+
+## 有 Type Hints 型別註釋
+def send_request(request_data : Any, # 可以是任何型別
+                 headers: Optional[dict[str, str]], # 可以是 None 或者是從 str 映射到 str 的 dict
+                 user_id: Optional[UserId] = None, # 可以是 None 或者是 UserId 類別
+                 as_json: bool = True): # 必須是 bool
+    pass
+```
 
 ## 常見的資料結構(使用時機與操作方式)
 ### 1. list
@@ -254,8 +275,46 @@ dict可以動態地新增與刪除資料，且資料儲存沒有順序性。
 
 ## logging
 ### 1. 層級與意義
-### 2. 如何輸出至 console
-### 3. 如何輸出至 file
+logging為開發者提供了5種程度不同的描述來紀錄訊息<br/>
+依嚴重程度排列如下：<br/>
+debug < info < warrning < error/exception < critical <br/>
+logger 提供 level 來過濾嚴重程度比較不高的messeage。<br/>
+logging 模組預設等級為 WARNING，大於或等於 WARNING 等級的訊息才會被記錄。<br/>
+
+程式碼範例
+```python
+import logging
+logging.basicConfig(level = logging.INFO)  # 將level設為info，因此debug不會印出
+
+logging.debug('Hello debug')
+logging.info("Hello info")
+logging.warning("Hello warning")
+logging.error("Hello errtr")
+logging.critical("Hello critical")
+```
+印出結果
+```
+INFO:root:Hello info
+WARNING:root:Hello warning
+ERROR:root:Hello errtr
+CRITICAL:root:Hello critical
+```
+
+
+```python
+import logging
+
+try:
+    x = 5 / 0
+except:
+    # 加上 exc_info=True 紀錄 Exception 內容 或直接使用logging.exception('Catch an exception.')
+    logging.error("Catch an exception.", exc_info=True)  
+```
+
+![alt text](img/logging_format.png "Title")
+
+
+### 2. 如何輸出至 file
 
 ## git
 ### 1. 如何建立 git repository
