@@ -39,7 +39,41 @@ print(os.environ['Pi']) # 跟 shell 中 echo $Pi 一樣
 
 ### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
 
-print 哪裡找 有誰使用
+使用`help()`查看"modules", "keywords", "symbols", 或是 "topics"
+範例
+```python
+help("list")
+```
+輸出結果
+```
+class list(object)
+ |  list(iterable=(), /)
+ |  
+ |  Built-in mutable sequence.
+ |  
+ |  If no argument is given, the constructor creates a new empty list.
+ |  The argument must be an iterable if specified.
+ |  
+ |  Methods defined here:
+ |  
+ |  __add__(self, value, /)
+ |      Return self+value.
+ |  
+ |  __contains__(self, key, /)
+ |      Return key in self.
+ |  
+ |  __delitem__(self, key, /)
+ |      Delete self[key].
+ |  
+ |  __eq__(self, value, /)
+ |      Return self==value.
+ |  
+ |  __ge__(self, value, /)
+ |      Return self>=value.
+ ....
+```
+
+使用python document 快速尋找有哪些方法在使用
 
 ### 5. 快速 reformat 程式碼，快速符合PEP8
 使用autopep8快速排版
