@@ -4,7 +4,13 @@
 一般執行：開啟[file.py]後直接在terminal執行`python3 file.py`或是按control + f5 <br/>
 偵錯執行：開啟[file.py]後，點選要debug的程式碼前方空白，出現紅色小圓點，按上方Run -> start Debugging或是按f5 <br/>
 ### 2. 設定執行參數(param)
-git -h
+git 或 python的其它套件 或 python 有不同的param 可以使用<br/>
+透過git -h, python -h 了解更多選項<br/>
+像是
+```
+--version
+--help
+```
 
 ### 3. 設定執行環境變數 (與參數的不同？)
 執行`printenv` 或 `env`可以查詢目前已經設置的環境變量<br/>
@@ -33,7 +39,20 @@ print(os.environ['Pi']) # 跟 shell 中 echo $Pi 一樣
 
 ### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
 
-### 5. 快速 reformat 程式碼
+print 哪裡找 有誰使用
+
+### 5. 快速 reformat 程式碼，快速符合PEP8
+使用autopep8快速排版
+```
+pip install autopep8
+autopep8 --in-place --aggressive --aggressive <filename>
+```
+
+使用black快速排版的
+```
+pip install black
+black <filename>
+```
 
 ## 虛擬環境操作(virtualenv)
 ### 1. 如何判斷目前在正確的虛擬環境中
