@@ -181,6 +181,31 @@ Before load_dotenv() None
 After load_dotenv() localhost:5432
 ```
 
+如果想要讓git忽略某些檔案
+先建立 .gitignore
+```
+$ touch .gitignore
+```
+
+```
+# 檔案名稱 .gitignore
+
+# 忽略 secret.yml 檔案
+secret.yml
+
+# 忽略 config 目錄下的 database.yml 檔案
+config/database.yml
+
+# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
+/db/*.sqlite3
+
+# 忽略所有附檔名是 .tmp 的檔案
+*.tmp
+
+# 當然你要忽略自己也可以，只是通常不會這麼做
+# .gitignore
+```
+
 ### 3. 如何執行一隻 python 程式
 1. 在終端機使用 Python shell 執行
 2. 利用一般文字編輯器撰寫程式檔，然後執行
