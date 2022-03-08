@@ -38,7 +38,10 @@ print(os.environ['Pi']) # 跟 shell 中 echo $Pi 一樣
 ```
 
 ### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
+(IDE版本)
+使用command + 右鍵去尋找
 
+（通用）
 使用`help()`查看"modules", "keywords", "symbols", 或是 "topics"
 範例
 ```python
@@ -181,31 +184,6 @@ Before load_dotenv() None
 After load_dotenv() localhost:5432
 ```
 
-如果想要讓git忽略某些檔案
-先建立 .gitignore
-```
-$ touch .gitignore
-```
-
-```
-# 檔案名稱 .gitignore
-
-# 忽略 secret.yml 檔案
-secret.yml
-
-# 忽略 config 目錄下的 database.yml 檔案
-config/database.yml
-
-# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
-/db/*.sqlite3
-
-# 忽略所有附檔名是 .tmp 的檔案
-*.tmp
-
-# 當然你要忽略自己也可以，只是通常不會這麼做
-# .gitignore
-```
-
 ### 3. 如何執行一隻 python 程式
 1. 在終端機使用 Python shell 執行
 2. 利用一般文字編輯器撰寫程式檔，然後執行
@@ -265,6 +243,24 @@ Optional argument: 22
 Optional argument: 33
 Optional kwargs argument key: k1 value 44
 Optional kwargs argument key: k2 value 55
+```
+```python
+def foo(name, *args):
+    print(name)
+    print(args)
+
+_args = (1,2,3,4,2,3,1)
+foo(1,2)
+foo(1,*_args)
+```
+執行結果
+```python
+# foo(1,2)
+1
+(2,)
+# foo(1,*_args)
+1
+(1,2,3,4,2,3,1)
 ```
 
 ### 6. return 與 yield
@@ -400,6 +396,9 @@ dict可以動態地新增與刪除資料，且資料儲存沒有順序性。
 
 ## logging
 ### 1. 層級與意義
+
+不同層級的用途是什麼？
+
 logging為開發者提供了5種程度不同的描述來紀錄訊息<br/>
 依嚴重程度排列如下：<br/>
 debug < info < warrning < error/exception < critical <br/>
@@ -531,3 +530,28 @@ git commit -m "message"  # 將跟改內容簡單記錄，方便其他人理解�
 ```
 ### 5. 何為衝突(conflict)
 當上傳內容與原本內容不同或合併分支內容有不同時，會出現衝突
+
+### 6. 如果想要讓git忽略某些檔案
+先建立 .gitignore
+```
+$ touch .gitignore
+```
+
+```
+# 檔案名稱 .gitignore
+
+# 忽略 secret.yml 檔案
+secret.yml
+
+# 忽略 config 目錄下的 database.yml 檔案
+config/database.yml
+
+# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
+/db/*.sqlite3
+
+# 忽略所有附檔名是 .tmp 的檔案
+*.tmp
+
+# 當然你要忽略自己也可以，只是通常不會這麼做
+# .gitignore
+```
