@@ -79,6 +79,9 @@ class list(object)
 使用python document 快速尋找有哪些方法在使用
 
 ### 5. 快速 reformat 程式碼，快速符合PEP8
+(IDE)
+-> VSCode:右鍵 -> Format Document or shift+option+F
+
 使用autopep8快速排版
 ```
 pip install autopep8
