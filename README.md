@@ -93,6 +93,7 @@ black <filename>
 
 ## 虛擬環境操作(virtualenv)
 ### 1. 如何判斷目前在正確的虛擬環境中
+查看目前所在路徑<br/>
 使用pip安裝virtualenv<br/>
 `sudo pip install virtualenv`<br/>
 透過virtualenv創造虛擬環境，在啟動虛擬環境的情況下，pip所安裝的套件只存在虛擬環境中，使得專案可以互相獨立，因此不同的專案可以安裝不同版本的使用套件。
