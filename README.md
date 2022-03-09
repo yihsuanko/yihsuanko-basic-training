@@ -163,6 +163,9 @@ print(about.__file__)  # 模組的檔名及路徑
 ```
 
 ### 2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
+
+(IDE) shift + command + p -> setting -> open settings.json
+
 安裝python-dotenv `pip install python-dotenv`
 新增 .env 檔
 並在 .env檔中設定變數
