@@ -38,10 +38,7 @@ print(os.environ['Pi']) # 跟 shell 中 echo $Pi 一樣
 ```
 
 ### 4. 快速尋找方法或參數的「源頭」或是「有哪些方法在使用」
-(IDE版本)
-使用command + 右鍵去尋找
 
-（通用）
 使用`help()`查看"modules", "keywords", "symbols", 或是 "topics"
 範例
 ```python
@@ -79,9 +76,6 @@ class list(object)
 使用python document 快速尋找有哪些方法在使用
 
 ### 5. 快速 reformat 程式碼，快速符合PEP8
-(IDE)
--> VSCode:右鍵 -> Format Document or shift+option+F
-
 使用autopep8快速排版
 ```
 pip install autopep8
@@ -96,7 +90,6 @@ black <filename>
 
 ## 虛擬環境操作(virtualenv)
 ### 1. 如何判斷目前在正確的虛擬環境中
-查看目前所在路徑<br/>
 使用pip安裝virtualenv<br/>
 `sudo pip install virtualenv`<br/>
 透過virtualenv創造虛擬環境，在啟動虛擬環境的情況下，pip所安裝的套件只存在虛擬環境中，使得專案可以互相獨立，因此不同的專案可以安裝不同版本的使用套件。
@@ -163,9 +156,6 @@ print(about.__file__)  # 模組的檔名及路徑
 ```
 
 ### 2. 環境變數如何設定與讀取(從 IDE、dotenv 設定)
-
-(IDE) shift + command + p -> setting -> open settings.json
-
 安裝python-dotenv `pip install python-dotenv`
 新增 .env 檔
 並在 .env檔中設定變數
@@ -250,24 +240,6 @@ Optional argument: 22
 Optional argument: 33
 Optional kwargs argument key: k1 value 44
 Optional kwargs argument key: k2 value 55
-```
-```python
-def foo(name, *args):
-    print(name)
-    print(args)
-
-_args = (1,2,3,4,2,3,1)
-foo(1,2)
-foo(1,*_args)
-```
-執行結果
-```python
-# foo(1,2)
-1
-(2,)
-# foo(1,*_args)
-1
-(1,2,3,4,2,3,1)
 ```
 
 ### 6. return 與 yield
@@ -403,10 +375,6 @@ dict可以動態地新增與刪除資料，且資料儲存沒有順序性。
 
 ## logging
 ### 1. 層級與意義
-
-不同層級的用途是什麼？
-![alt text](img/logging_meaning.png "Title")
-
 logging為開發者提供了5種程度不同的描述來紀錄訊息<br/>
 依嚴重程度排列如下：<br/>
 debug < info < warrning < error/exception < critical <br/>
@@ -478,33 +446,7 @@ logging.error('error message')
 logging.critical('critical message')
 ```
 
-### 3. 同時輸出至file和console
-
-```python
-import logging
-
-logger = logging.getLogger()  # 設置root logger
-logger.setLevel(logging.DEBUG)
-formatter = logging.Formatter(
-    '%(asctime)s - %(name)s - %(levelname)s: - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S')
-
-# 使用FileHandler輸出到file
-fh = logging.FileHandler('log.txt')
-fh.setLevel(logging.DEBUG)
-fh.setFormatter(formatter)
-
-# 使用StreamHandler輸出到console
-ch = logging.StreamHandler()
-ch.setLevel(logging.DEBUG)
-ch.setFormatter(formatter)
-
-# 使用兩個Handler
-logger.addHandler(ch)
-logger.addHandler(fh)
-logger.info('this is info message')
-logger.warn('this is warn message')
-```
+2. fileConfig
 
 ## git
 ### 1. 如何建立 git repository
@@ -539,27 +481,10 @@ git commit -m "message"  # 將跟改內容簡單記錄，方便其他人理解�
 ### 5. 何為衝突(conflict)
 當上傳內容與原本內容不同或合併分支內容有不同時，會出現衝突
 
-### 6. 如果想要讓git忽略某些檔案
-先建立 .gitignore
-```
-$ touch .gitignore
-```
 
-```
-# 檔案名稱 .gitignore
-
-# 忽略 secret.yml 檔案
-secret.yml
-
-# 忽略 config 目錄下的 database.yml 檔案
-config/database.yml
-
-# 忽略所有 db 目錄下附檔名是 .sqlite3 的檔案
-/db/*.sqlite3
-
-# 忽略所有附檔名是 .tmp 的檔案
-*.tmp
-
-# 當然你要忽略自己也可以，只是通常不會這麼做
-# .gitignore
-```
+## Python PEP8 命名規範 (Naming Conventions)
+1. _inside_variable：單底線開頭，作為內部變數使用，`form M import*`不會匯入以底線開始的變數。
+2. Module Names：簡短全小寫，可使用底線。(ner_predict)
+3. Package Names：簡短全小寫，不使用底線。(app)
+4. Class Names：首字母大寫，Camel Case，不使用底線。（ResultOutput）
+5. Function Names：小寫
